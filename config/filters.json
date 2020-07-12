@@ -22,7 +22,8 @@
 		"type":"checkbox",
 		"options":[
 			{"id": "objType-BBH", "label":"text.gwviewer.filter.objType.BBH", "checked": true, "value": "BBH" },
-			{"id": "objType-BNS", "label":"text.gwviewer.filter.objType.BNS", "checked": true, "value": "BNS" }
+			{"id": "objType-BNS", "label":"text.gwviewer.filter.objType.BNS", "checked": true, "value": "BNS" },
+			{"id": "objType-NSBH", "label":"text.gwviewer.filter.objType.NSBH", "checked": true, "value": "NSBH" }
 		]
 	},
 	"M1": {
