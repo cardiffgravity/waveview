@@ -111,7 +111,7 @@ function GWViewer(attr) {
 		}
 	};
 	this.colourscheme = 'default';
-
+	this.colourlist=['#8DD3C7','#FFFFB3','#BEBADA','#FB8072','#80B1D3','#FDB462','#B3DE69','#FCCDE5','#D9D9D9','#BC80BD','#CCEBC5','#FFED6F']
 	this.labelpositions = {'hidden':{},'startmerger':{},'endmerger':{},'auto':{}};
 	this.labelposition = 'auto';
 
@@ -881,11 +881,17 @@ GWViewer.prototype.draw = function(format){
 		var dy = this.axes.y.spacing/2;
 		if(this.axes.y.auto) dy = this.canvas.tall*(1/(n+1));
 
+		// initialist colour number (if no colour set)
+		var colourx=0;
 		// Loop over each waveform
 		for(var i = 0, ii = 0; i < this.cat.length; i++){
 
 			wf = this.cat.data[i].waveform;
-			if(!wf.colour) wf.colour = "white";
+			// if(!wf.colour) wf.colour = "white";
+			if(!wf.colour){
+				wf.colour = this.colourlist[colourx%this.colourlist.length];
+				colourx++;
+			}
 
 			if(wf.active){
 
