@@ -12,8 +12,8 @@ function GWViewer(attr) {
 	if(typeof attr.id!=="string") attr.id = "gw-viewer";
 	this.attr = attr;
 
-	this.logging = true;
-	this.logtime = true;
+	this.logging = (this.logging)?this.logging:false;
+	this.logtime = (this.logtime)?this.logtime:false;
 	if(typeof this.attr.log==="boolean") this.logging = this.attr.log;
 	if(typeof this.attr.logtime==="boolean") this.logtime = this.attr.logtime;
 	if(this.logging && console) console.log('%cGWViewer v'+this.version+'%c','font-weight:bold;font-size:1.25em;','');
