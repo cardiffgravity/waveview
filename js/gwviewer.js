@@ -700,6 +700,15 @@ GWViewer.prototype.loadCatalogue = function(file){
 				for(var i = 0; i < this.cat.length; i++){
 					if(!this.cat.data[i].waveform){
 						if(!wavefiles[this.cat.data[i].name]) wavefiles[this.cat.data[i].name] = {};
+						let links=_obj.cat.getLink(_obj.cat.data[i].name,'waveform-compressed')
+						if (links.length>0){
+							wavefiles[this.cat.data[i].name].file=links[0].url;
+							wavefiles[this.cat.data[i].name].tmerge=links[0].tmerge;
+							wavefiles[this.cat.data[i].name].offset=links[0].offset;
+							wavefiles[this.cat.data[i].name].src='cat';
+						}else{
+							wavefiles[this.cat.data[i].name].src='custom';
+						}
 						wavefiles[this.cat.data[i].name].callback = {
 							'onload': function(a){
 								_obj.scaleWaves();
