@@ -30,19 +30,19 @@
 		"label": "data.M1.name",
 		"type":"slider",
 		"min": { "label": "", "unit": "data.M1.unit", "default": 0, "value": 0 },
-		"max": { "label": "", "unit": "data.M1.unit", "default": 50, "value": 50 }
+		"max": { "label": "", "unit": "data.M1.unit", "default": 100, "value": 100 }
 	},
 	"M2": {
 		"label": "data.M2.name",
 		"type":"slider",
 		"min": { "label": "", "unit": "data.M2.unit", "default": 0, "value": 0 },
-		"max": { "label": "", "unit": "data.M2.unit", "default": 50, "value": 50 }
+		"max": { "label": "", "unit": "data.M2.unit", "default": 100, "value": 100 }
 	},
 	"Mfinal": {
 		"label": "data.Mfinal.name",
 		"type":"slider",
 		"min": { "label": "", "unit": "data.Mfinal.unit", "default": 0, "value": 0 },
-		"max": { "label": "", "unit": "data.Mfinal.unit", "default": 100, "value": 100 }
+		"max": { "label": "", "unit": "data.Mfinal.unit", "default": 200, "value": 200 }
 	},
 	"rho": {
 		"label": "data.rho.name",
@@ -60,14 +60,14 @@
 		"label": "data.DL.name",
 		"type":"slider",
 		"min": { "label": "", "unit": "data.DL.unit", "default": 0, "value": 0 },
-		"max": { "label": "", "unit": "data.DL.unit", "default": 3000, "value": 3000 }
+		"max": { "label": "", "unit": "data.DL.unit", "default": 8000, "value": 8000 }
 	},
 	"z": {
 		"label": "data.z.name",
 		"type":"slider",
 		"step": 0.01,
 		"min": { "label": "", "default": 0, "value": 0 },
-		"max": { "label": "", "default": 0.3, "value": 0.3 }
+		"max": { "label": "", "default": 1.0, "value": 1.0 }
 	},
 	"UTC": {
 		"label": "data.date.name",
