@@ -6,6 +6,7 @@
     <!-- <script type="text/javascript" src="gwcat/js/gwcat.js"></script> -->
 	<script type="text/javascript" src="js/gwviewer.js"></script>
 	<script type="text/javascript" src="js/lib/nouislider.min.js"></script>
+    <script type="text/javascript" src="js/gh-analytics.js"></script>
     <link rel="icon" type="image/vnd.microsoft.icon" href="img/favicon-32x32.png" />
 	<link rel="stylesheet" href="css/lib/nouislider.min.css">
 	<link rel="stylesheet" href="css/gwviewer.css">
@@ -15,16 +16,7 @@
     <meta property="og:title"         content="Gravitational Wave Viewer" />
     <meta property="og:description"   content="Explore the LIGO catalogue of gravitataional waves" />
     <meta property="og:image"         content="http://chrisnorth.github.io/plotgw/img/screenshot.png" />
-    <link rel="icon" type="image/vnd.microsoft.icon" href="http://chrisnorth.github.io/plotgw/img/favicon-32x32.png" />
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-130299724-5"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'UA-130299724-5');
-    </script>
+    <link rel="icon" type="image/vnd.microsoft.icon" href="https://chrisnorth.github.io/plotgw/img/favicon-32x32.png" />
 </head>
 <body>
 
@@ -43,7 +35,8 @@
 	S(document).ready(function(){
 		gwview = new GWViewer({
 			'id': 'gwviewer',
-			'dom': { 'menu': S('menu .holder') }
+			'dom': { 'menu': S('menu .holder')},
+            'dev':false
 		});
 	});
 	</script>
