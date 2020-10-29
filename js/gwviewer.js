@@ -11,7 +11,7 @@ function GWViewer(attr) {
 	if(!attr) attr = {};
 	if(typeof attr.id!=="string") attr.id = "gw-viewer";
 	this.attr = attr;
-
+	this.dev = (typeof this.attr.dev==="boolean") ? this.attr.dev : false;
 	this.logging = (this.logging)?this.logging:false;
 	this.logtime = (this.logtime)?this.logtime:false;
 	if(typeof this.attr.log==="boolean") this.logging = this.attr.log;
@@ -78,7 +78,7 @@ function GWViewer(attr) {
 		},
 		'y':{
 			'auto':true,
-			'scale':2e6,
+			'scale':4e6,
 			'spacing':50
 		}
 	}
@@ -129,8 +129,8 @@ function GWViewer(attr) {
 	if(this.dom.menu){
 		html = '<div class="menu">';
 		html += '<section class="collapse"><h2 tabindex="0" class="expandable"><span lang="text.gen.about" lang-title="text.gen.about" class="translatable">About</span></h2><div class="expander row"><p class="translatable" lang="text.gwviewer.help.about"></p><p class="translatable" lang="text.gwviewer.help.technical"></p></div></section>';
-		html += '<section class="collapse"><h2 tabindex="0" class="expandable"><span lang="text.plotgw.lang.title" lang-title="tooltip.plotgw.showlang" class="translatable">Language</span> - <span lang="meta.name" class="translatable">English</span> [<span lang="meta.code" class="translatable">en</span>]</h2><ol id="languagelist" class="expander"></ol></section>';
-		html += '<section class="collapse"><h2 tabindex="0" class="translatable expandable" lang="text.gwviewer.orderby">Order by</h2><ol class="expander"><li><button class="order selected translatable" lang="text.gwviewer.orderby.date-oldest" order-by="UTC">Date (oldest first)</button></li><li><button class="order translatable" lang="text.gwviewer.orderby.date-newest" order-by="UTC" order-reverse="true">Date (most recent first)</button></li><li><button class="order translatable" lang="text.gwviewer.orderby.M1-largest" order-by="M1" order-reverse="true">M1 (largest)</button></li><li><button class="order translatable" lang="text.gwviewer.orderby.M2-largest" order-by="M2" order-reverse="true">M2 (largest)</button></li><li><button class="order translatable" lang="text.gwviewer.orderby.Mfinal-largest" order-by="Mfinal" order-reverse="true">Final mass (largest)</button></li><li><button class="order translatable" lang="text.gwviewer.orderby.dl-furthest" order-by="DL" order-reverse="true">Luminosity distance (furthest)</button></li><li><button class="order translatable" lang="text.gwviewer.orderby.dl-nearest" order-by="DL">Luminosity distance (nearest)</button></li><li><button class="order translatable" lang="text.gwviewer.orderby.rho-highest" order-by="rho" order-reverse="true">Signal-to-noise (highest)</button></li></ol></section>';
+		html += '<section class="collapse"><h2 tabindex="0" class="expandable"><span lang="text.gwviewer.lang.title" lang-title="text.gwviewer.lang.tooltip" class="translatable">Language</span> - <span lang="meta.name" class="translatable">English</span> [<span lang="meta.code" class="translatable">en</span>]</h2><ol id="languagelist" class="expander"></ol></section>';
+		html += '<section class="collapse"><h2 tabindex="0" class="translatable expandable" lang="text.gwviewer.orderby" lang-title="text.gwviewer.orderby.tooltip" >Order by</h2><ol class="expander"><li><button class="order selected translatable" lang="text.gwviewer.orderby.date-oldest" order-by="UTC">Date (oldest first)</button></li><li><button class="order translatable" lang="text.gwviewer.orderby.date-newest" order-by="UTC" order-reverse="true">Date (most recent first)</button></li><li><button class="order translatable" lang="text.gwviewer.orderby.M1-largest" order-by="M1" order-reverse="true">M1 (largest)</button></li><li><button class="order translatable" lang="text.gwviewer.orderby.M2-largest" order-by="M2" order-reverse="true">M2 (largest)</button></li><li><button class="order translatable" lang="text.gwviewer.orderby.Mfinal-largest" order-by="Mfinal" order-reverse="true">Final mass (largest)</button></li><li><button class="order translatable" lang="text.gwviewer.orderby.dl-furthest" order-by="DL" order-reverse="true">Luminosity distance (furthest)</button></li><li><button class="order translatable" lang="text.gwviewer.orderby.dl-nearest" order-by="DL">Luminosity distance (nearest)</button></li><li><button class="order translatable" lang="text.gwviewer.orderby.rho-highest" order-by="rho" order-reverse="true">Signal-to-noise (highest)</button></li></ol></section>';
 		html += '<section class="collapse"><h2 tabindex="0" class="expandable"><span lang="text.gwviewer.filter" lang-title="text.gwviewer.filter.title" class="translatable">Filter</span></h2><form class="expander" id="filterform"></form></section>';
 		html += '<section class="collapse"><h2 tabindex="0" class="expandable"><span lang="text.gwviewer.viewoptions" lang-title="text.gwviewer.viewoptions" class="translatable">View options</span></h2><form class="expander" id="optionsform"></form></section>';
 		html += '<section class="collapse"><h2 tabindex="0" class="expandable"><span lang="text.gwviewer.save" lang-title="text.gwviewer.save" class="translatable">Save</span></h2><ol class="expander" id="saveform"><li><button id="save-svg" lang="text.gwviewer.save.svg" lang-title="text.gwviewer.save.svg" class="translatable">Save as SVG</button></li><li><button id="save-png" lang="text.gwviewer.save.png" lang-title="text.gwviewer.save.png" class="translatable">Save as PNG</button></li></ol></section>';
@@ -636,7 +636,7 @@ GWViewer.prototype.loadLanguage = function(l,update){
 					_filesloaded++;
 					if(_filestoload == _filesloaded) this.updateLanguage();
 				},
-				'error': function(){
+				'error': function(data,attr){
 					this.log('ERROR','Unable to load '+attr.url);
 				}
 			})
@@ -703,6 +703,10 @@ GWViewer.prototype.loadCatalogue = function(file){
 						let links=_obj.cat.getLink(_obj.cat.data[i].name,'waveform-compressed')
 						if (links.length>0){
 							wavefiles[this.cat.data[i].name].file=links[0].url;
+							if (this.dev){
+								let linkurl=links[0].url.replace('https://data.cardiffgravity.org/gwcat-data/data/','dev/');
+								wavefiles[this.cat.data[i].name].file=linkurl;
+							}
 							wavefiles[this.cat.data[i].name].tmerge=links[0].tmerge;
 							wavefiles[this.cat.data[i].name].offset=links[0].offset;
 							wavefiles[this.cat.data[i].name].src='cat';
@@ -743,8 +747,12 @@ GWViewer.prototype.loadCatalogue = function(file){
 			}
 		});
 	}
-
-	this.cat = new GWCat(loaded,{confirmedOnly:true,debug:false});
+	if (this.dev){
+		this.cat = new GWCat(loaded,{confirmedOnly:true,debug:false,fileIn:"../gwcat-data-dev/data/gwosc_gracedb.jsonp"});
+	}else{
+		this.cat = new GWCat(loaded,{confirmedOnly:true,debug:false});
+	}
+	
 
 	return this;
 }
@@ -957,9 +965,9 @@ GWViewer.prototype.draw = function(format){
 					// If we are "auto" or "endmerger" we try setting the x-position to the merger
 					if(this.labelposition == "auto" || this.labelposition == "endmerger"){
 						if (this.axes.x.logscale){
-							x = (xorig+Math.log10(wf.tmerge-wf.offset*tscale)*xlogscale-xlogoffset) + this.canvas.fs/2;
+							x = (xorig+Math.log10(wf.tmerge-wf.offset*tscale)*xlogscale-xlogoffset) + 2*this.canvas.fs;
 						}else{
-							x = (xorig+wf.tmerge*xscale-xoffsetwf) + this.canvas.fs/2;
+							x = (xorig+wf.tmerge*xscale-xoffsetwf) + 2*this.canvas.fs;
 						}
 						// If the text label doesn't fit on the screen we'll clear the x-position
 						if(this.labelposition == "auto" && x + w > this.canvas.wide) x = 0;
