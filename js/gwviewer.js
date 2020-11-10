@@ -134,6 +134,7 @@ function GWViewer(attr) {
 		html += '<section class="collapse"><h2 tabindex="0" class="expandable"><span lang="text.gwviewer.filter" lang-title="text.gwviewer.filter.title" class="translatable">Filter</span></h2><form class="expander" id="filterform"></form></section>';
 		html += '<section class="collapse"><h2 tabindex="0" class="expandable"><span lang="text.gwviewer.viewoptions" lang-title="text.gwviewer.viewoptions" class="translatable">View options</span></h2><form class="expander" id="optionsform"></form></section>';
 		html += '<section class="collapse"><h2 tabindex="0" class="expandable"><span lang="text.gwviewer.save" lang-title="text.gwviewer.save" class="translatable">Save</span></h2><ol class="expander" id="saveform"><li><button id="save-svg" lang="text.gwviewer.save.svg" lang-title="text.gwviewer.save.svg" class="translatable">Save as SVG</button></li><li><button id="save-png" lang="text.gwviewer.save.png" lang-title="text.gwviewer.save.png" class="translatable">Save as PNG</button></li></ol></section>';
+		html += '<section class="padding"><h2 tabindex="0"><span>&nbsp</span></h2></section>';
 		html += '</div>';
 		this.dom.menu.html(html);
 	}
