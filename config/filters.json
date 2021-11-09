@@ -5,7 +5,8 @@
 		"options":[
 			{"id": "o1", "label":"text.gwviewer.filter.observingrun.O1", "checked": true, "value": "O1", "contains": true  },
 			{"id": "o2", "label":"text.gwviewer.filter.observingrun.O2", "checked": true, "value": "O2", "contains": true  },
-			{"id": "o3", "label":"text.gwviewer.filter.observingrun.O3", "checked": true, "value": "O3", "contains": true  }
+			{"id": "o3a", "label":"text.gwviewer.filter.observingrun.O3a", "checked": true, "value": "O3a", "contains": true  },
+			{"id": "o3b", "label":"text.gwviewer.filter.observingrun.O3b", "checked": true, "value": "O3b", "contains": true  }
 		]
 	},
 	"net": {
@@ -21,13 +22,13 @@
 		"label": "data.M1.name",
 		"type":"slider",
 		"min": { "label": "", "unit": "data.M1.unit", "default": 0, "value": 0 },
-		"max": { "label": "", "unit": "data.M1.unit", "default": 100, "value": 100 }
+		"max": { "label": "", "unit": "data.M1.unit", "default": 150, "value": 150 }
 	},
 	"M2": {
 		"label": "data.M2.name",
 		"type":"slider",
 		"min": { "label": "", "unit": "data.M2.unit", "default": 0, "value": 0 },
-		"max": { "label": "", "unit": "data.M2.unit", "default": 100, "value": 100 }
+		"max": { "label": "", "unit": "data.M2.unit", "default": 150, "value": 150 }
 	},
 	"Mfinal": {
 		"label": "data.Mfinal.name",

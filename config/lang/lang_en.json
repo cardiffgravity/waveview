@@ -23,6 +23,8 @@
 	"text.gwviewer.filter.observingrun.O1": "O1",
 	"text.gwviewer.filter.observingrun.O2": "O2",
 	"text.gwviewer.filter.observingrun.O3": "O3",
+	"text.gwviewer.filter.observingrun.O3a": "O3a",
+	"text.gwviewer.filter.observingrun.O3b": "O3b",
 	"text.gwviewer.filter.detector": "Detector",
 	"text.gwviewer.filter.detector-H": "H",
 	"text.gwviewer.filter.detector-L": "L",
